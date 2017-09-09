@@ -227,7 +227,7 @@ public class AdminController {
 		Users user = new Users();
 		user.setUid(uid);
 		userService.deruser(user);
-		model.setViewName("redirect:/admin/userList");
+		model.setViewName("redirect:/admin/userList?nowpage=1");
 		return model;
 	}
 	/**
