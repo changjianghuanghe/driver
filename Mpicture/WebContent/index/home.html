@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<!-- 自适应样式 -->
+<link rel="stylesheet" href="../css/xitongyangshi.css" />
+<title>萌小你</title>
+</head>
+<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+<!-- 自适应判断 -->
+<script type="text/javascript" src="../js/Adaptive.js"></script>
+<!-- 定时器  2秒跳转 -->
+<script type="text/javascript">
+$(function(){
+	setTimeout(Redirect, 1500); 
+	function Redirect() {
+		location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx00fd10c78cc22c51&redirect_uri=http://acg.myfa.cn/Mpicture/index/login.do&response_type=code&scope=snsapi_base&state=123#wechat_redirect"; 
+　　　	//location.href="type.jsp";
+　　　}
+});　　　　　
+</script>
+<style>
+/*图片或其他自适应*/
+img{
+	width:100%; height:auto;
+}
+</style>
+<body>
+	<img src="img/1.jpg" />
+</body>
+</html>

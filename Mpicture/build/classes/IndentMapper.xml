@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mpicture.dao.IndentMapper">
+	<resultMap type="com.mpicture.entity.Indent" id="IndentList">
+		<id column="tid" property="tid"/>
+		<result column="systime" property="systime"/>
+		<result column="userphoto" property="userphoto"/>
+		<result column="status" property="status"/>
+		<result column="picture" property="picture"/>
+		<result column="statusintr" property="statusintr"/>
+		<result column="updatetotal" property="updatetotal"/>
+		<association property="product_id" column="pid" javaType="com.mpicture.entity.Product">
+			<id column="pid" property="pid"/>
+			<result column="price" property="price"/>
+			<result column="cover" property="cover"/>
+			<result column="name" property="name"/>
+		</association>
+	</resultMap> 
+	
+	<resultMap type="com.mpicture.entity.Indent" id="newIndents">
+		<id column="tid" property="tid"/>
+		<result column="picture" property="picture"/>
+	</resultMap> 
+	
+	<resultMap type="com.mpicture.entity.Indent" id="BackstageIndents">
+		<id column="tid" property="tid"/>
+		<result column="systime" property="systime"/>
+		<result column="userphoto" property="userphoto"/>
+		<result column="require_text" property="require"/>
+		<result column="e_mail" property="e_mail"/>
+		<result column="statusintr" property="statusintr"/>
+		<result column="updatetotal" property="updatetotal"/>
+		<association property="users_id" column="users_id" javaType="com.mpicture.entity.Users">
+			<id column="uid" property="uid"/>
+			<result column="username" property="username"/>
+		</association>
+		<association property="product_id" column="pid" javaType="com.mpicture.entity.Product">
+			<id column="pid" property="pid"/>
+			<result column="price" property="price"/>
+			<result column="cover" property="cover"/>
+			<result column="name" property="name"/>
+		</association>
+	</resultMap>
+	
+	<select id="listIndentByStatus" resultMap="BackstageIndents">
+		select tid,systime,userphoto,require_text,e_mail,uid,username,pid,`name`,cover,price,
+		statusintr,updatetotal from indent t,users u,product p where t.users_id=u.uid and t.product_id=p.pid 
+		<choose>
+			<when test="status!=null">
+				and t.`status`=#{status}
+			</when>
+		</choose>
+		ORDER BY tid LIMIT #{pageClass.limitstart},#{pageClass.pagecount}
+	</select>
+	
+	<select id="listIndentByStatusCount" resultType="java.lang.Integer">
+		select count(*) from indent 
+		<choose>
+			<when test="status!=null">
+				where `status`=#{status}
+			</when>
+		</choose>
+	</select>
+</mapper> 

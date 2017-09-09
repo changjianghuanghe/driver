@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- 自适应配置 -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="../css/stylees.css" />
+<!-- 自适应样式 -->
+<link rel="stylesheet" href="../css/xitongyangshi.css" />
+<title></title>
+
+<style type="text/css">
+/*图片或其他自适应*/
+img {
+    max-width: 100%;
+}
+</style>
+</head>
+<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+<!-- 自适应判断 -->
+<script type="text/javascript" src="../js/Adaptive.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+	　		url:"../index/getSession",
+	　		type: 'POST',
+	       	dataType: 'text',	//返回数据格式
+	       	async:true,
+	       	contentType: "application/json; charset=utf-8",
+	       	success:function(data){
+	       		var jsons=JSON.parse(data);
+	       		var user=jsons.user;
+	       		$("#big").text(user.username);
+	       		$("#imghead").attr('src',user.headportrait);
+	       		$("#balance").text(user.balance);
+	       		listMyIndent(user.uid);
+	       	},	
+	       	error:function(){
+	       		console.log("用户信息获取失败");
+	       	}
+	　	}); 
+		function listMyIndent(uid){
+			$.ajax({
+		　		url:"../index/listMyIndent?uid="+uid,
+		　		type: 'POST',
+		       	dataType: 'text',	//返回数据格式
+		       	async:true,
+		       	contentType: "application/json; charset=utf-8",
+		       	success:function(data){
+		       		var json=JSON.parse(data);
+		       		var indent=json.indent;
+		       		$("#indent").text(indent.length+"单");
+		       	},	
+		       	error:function(){
+		       		console.log("信息获取失败");
+		       	}
+		　	});
+		}
+		
+		var myIndent=$(".imgs");
+		myIndent.eq(0).click(function(){
+			location.href="mybalance.html";
+		});
+		/* myIndent.eq(1).click(function(){
+			location.href="mybalance.html";
+		}); */
+		myIndent.eq(1).click(function(){
+			location.href="myindent.html";
+		});
+		myIndent.eq(2).click(function(){
+			location.href="mypicture.html";
+		});
+		/* myIndent.eq(5).click(function(){
+			location.href="mybalance.html";
+		}); */
+		$("#leftArrow").click(function(){
+			location.href="type.html";
+		});
+	});
+	
+	/*资金明细 */
+	$(function(){
+		var myIndent=$(".imgs");
+		myIndent.eq(3).click(function(){
+			location.href="cdetail.html";
+		});
+	});
+	/*个人设置 */
+	$(function(){
+		var myIndent=$(".imgs");
+		myIndent.eq(4).click(function(){
+			location.href="../index/personalset.jsp";
+		});
+	});
+	/*画师认证 */
+	$(function(){
+		var myIndent=$(".imgs");
+		myIndent.eq(5).click(function(){
+			location.href="painterrz.html";
+		});
+	});
+</script>
+<style>
+	.img-wrap{
+        width: 107%; /* 这里设置占屏幕宽度百分比 */
+        margin: 0 auto; 
+    }
+    
+    /* 创建一个正方形容器 */
+    .img-container{
+        width: 100%;
+        height: 0px;
+        padding-bottom: 100%;
+        overflow:hidden;
+        margin: 0;
+        position:relative;
+    }
+
+    /* 采用绝对定位 */
+    .img-wrap img{
+        position:absolute;
+        width: 100%;
+        height: 100%;
+        bottom:8%;
+		right:4%;
+    }
+</style>
+<body>
+<div style="width: 100%;height: 100%;">
+	<!-- 页眉 -->
+	<!-- <div class="down">
+		<div class="stylees-right"><a href="type.jsp"><img src="img/kongbai.png" /></a></div>
+		<div class="stylees-wanzi">我的</div>
+	</div>
+	<br /> -->
+	<!-- 水平分割线样式 -->  
+	<!-- <div id="level"></div> -->
+	
+	<!-- 用户信息 -->
+	<div id="userpicture1">
+		<div class="tupian">
+			<div class='img-wrap'>
+        		<div class="img-container">
+            		<img id="imghead" src="img/head.jpg"/>
+			    </div>
+			</div>
+		</div>
+		<hr id="headhr"/>
+		<div id="userpicture2">
+			<div class="stylees-nicheng">
+				<big id="big" style="color: sandybrown;font-family:Microsoft Yahei;">未登录</big>
+			</div>
+			<!-- <div class="nickname">&nbsp;&nbsp;&nbsp;&nbsp;</div> -->
+			<div style="font-size: 0.1em;margin-left: 10.5%;color: #999999;border: 1px solid white;"></div>
+		</div>
+	</div>
+	
+	<!-- 主页内容 -->
+	<div style="margin-top: -0.7em;">
+		<div class="clarity"></div>
+		<div class="imgs">
+			<div class="imgses"><img src="img/balance.png"/></div>
+			<div class="textes">当前余额</div>
+			<div id="balance" class="balance">0元</div>
+			<div class="descriptiones"><img src="img/forward.png" /></div>
+		</div>
+		<div class="clarity"></div>
+		<!-- <div class="imgs">
+			<div class="imgses"><img src="img/recharge.png"/></div>
+			<div class="textes">充值</div>
+			<div class="descriptiones"><img src="img/forward.png" /></div>
+		</div> -->
+		<!-- <div class="clarity"></div> -->
+		<div class="imgs">
+			<div class="imgses"><img src="img/myindent.png"/></div>
+			<div class="textes">我的订单</div>	
+			<div id="indent" class="balance">0单</div>
+			<div class="descriptiones"><img src="img/forward.png" /></div>
+		</div>
+		<div class="clarity"></div>
+		<div class="imgs">
+			<div class="imgses"><img src="img/mypicture.png"/></div>
+			<div class="textes">我的萌画</div>
+			<div class="descriptiones"><img src="img/forward.png" /></div>
+		</div>
+		<div class="clarity"></div>
+		<div class="imgs">
+			<div class="imgses"><img src="img/capital.png"/></div>
+			<div class="textes">资金明细</div>
+			<div class="descriptiones"><img src="img/forward.png" /></div>
+		</div>
+		<div class="clarity"></div>
+		<!-- <div class="imgs">
+			<div class="imgses"><img src="img/withdrawals.png"/></div>
+			<div class="textes">申请提现</div>
+			<div class="descriptiones"><img src="img/forward.png" /></div>
+		</div>
+		<div class="clarity"></div> -->
+		<div class="imgs">
+			<div class="imgses"><img src="img/setup.png"/></div>
+			<div class="textes">个人设置</div>
+			<div class="descriptiones"><img src="img/forward.png" /></div>
+		</div>
+		<div class="clarity"></div>
+		<div class="imgs">
+			<div class="imgses"><img src="img/authentication.png"/></div>
+			<div class="textes">画师认证</div>
+			<div class="descriptiones"><img src="img/forward.png" /></div>
+		</div>
+		<div class="clarity"></div>
+	</div>
+	
+	<!-- 导航栏  -->
+	<div class="todown">
+		<div style="height: 3.5em;width: 100%;position: fixed;top: 0;background:#FFAC66;">
+			<!-- 页眉内容 -->
+	        <div class="down">
+	        	<div class="stylees-forward"><img src="img/kongbai.png" style=""/></div>
+	        	<div class="stylees-wanzi">我的</div>
+			    <br />
+			    <!-- 水平分割线 -->
+			    <!-- <div id="level"></div> -->
+		   </div>
+	   </div>
+	</div>
+	
+	
+	<!-- 页脚内容 -->
+	<div class="footdiv">
+		<a href="../index/productHeadList?nowpage=1&type=1">
+			<div style="position: fixed;width: 50%;left: 0;">
+				<img src="img/dingzhiicon.png" style="width: 15%;height: 15%;margin-left: 5em;">
+				<div style="margin-left: 6em;font-size:0.8em;color:gray;">定制</div>
+			</div>
+		</a>
+		<a href="menu.html">
+			<div style="position: fixed;width: 50%;right: 0;">
+				<img src="img/myicon.png" style="width: 15%;height: 15%;margin-left: 4.8em;">
+				<div style="margin-left: 6em;font-size:0.8em;color:gray;">我的</div>
+			</div>
+		</a>
+	</div>
+</div>
+</body>
+</html>

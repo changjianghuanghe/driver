@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/stylees.css" />
+    <!-- 自适应样式 -->
+    <link rel="stylesheet" href="../css/xitongyangshi.css" />
+</head>
+<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+<!-- 自适应判断 -->
+<script type="text/javascript" src="../js/Adaptive.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#get").click(function () {
+            var money=$("#money").val();
+            location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx00fd10c78cc22c51&redirect_uri=http://acg.myfa.cn/Mpicture/index/recharge?money="+money+"&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+        });
+    });
+</script>
+<style>
+    html, body {
+        height: 100%;
+    }
+</style>
+<body>
+<!-- 页眉 -->
+<center>
+    <div class="down">
+        <div class="stylees-right">
+            <a href="javascript:history.go(-1)"><img src="img/right.png" /></a>
+        </div>
+        <div class="stylees-wanzi">资金提现</div>
+    </div>
+</center>
+<br />
+<div id="level"></div>
+
+
+<input id="money" placeholder="输入提现金额" style="height: 6%; width: 96%; margin-left: 2%; margin-top: 2%;border-radius: 2%;">
+<img id="get" src="img/getmoney.png" style="margin-left: 29%;margin-top: 2%">
+<p style="text-align: center;position: relative;top: -7.8%;color: white">确认提现</p>
+</body>
+</html>

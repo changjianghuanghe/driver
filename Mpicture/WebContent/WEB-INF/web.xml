@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Mpicture</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring.xml</param-value>
+  </context-param>
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>springMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springMVC</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 使用DWR进行页面消息推送  -->  
+    <servlet>    
+        <servlet-name>dwr-invoker</servlet-name>  
+        <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>  
+        <init-param>  
+            <param-name>debug</param-name>  
+            <param-value>true</param-value>  
+        </init-param>  
+        <init-param> 
+            <param-name>activeReverseAjaxEnabled</param-name> 
+            <param-value>true</param-value> 
+        </init-param> 
+        <init-param> 
+            <param-name> 
+               initApplicationScopeCreatorsAtStartup 
+            </param-name> 
+            <param-value>true</param-value> 
+        </init-param>
+        <init-param> 
+            <param-name>maxWaitAfterWrite</param-name> 
+            <param-value>100</param-value> 
+        </init-param> 
+        <load-on-startup>4</load-on-startup> 
+    </servlet>  
+      
+    <servlet-mapping>  
+        <servlet-name>dwr-invoker</servlet-name>  
+        <url-pattern>/dwr/*</url-pattern>  
+    </servlet-mapping>  
+  
+<!--  <servlet>
+    <servlet-name>initAccessTokenServlet</servlet-name>
+    <servlet-class>
+            com.access_token.util.AccessTokenServlet
+        </servlet-class>
+    <init-param>
+      <param-name>appid</param-name>
+      <param-value>wx00fd10c78cc22c51</param-value>
+    </init-param>
+    <init-param>
+      <param-name>appsecret</param-name>
+      <param-value>9375ff7b788f6370e1ed0f6165572a65</param-value>
+    </init-param>
+    <load-on-startup>0</load-on-startup>
+  </servlet>  -->
+</web-app>

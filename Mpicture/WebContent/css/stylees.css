@@ -1,0 +1,226 @@
+	/* body,div {
+        padding: 0;
+        margin: 0;
+    }  */
+    /*图片或其他自适应*/
+    /* img, object {
+        max-width: 100%;
+    }  */
+
+    .to {
+        width: 38%;
+        height: 38%;
+        border-radius: 50%;
+    }
+
+   .toleft{
+       float: left;
+       height: 50%;
+       width: 50%;
+       margin-bottom: 5%;
+   }
+    .totop{
+        margin-top: 0%;
+        text-align: center;
+    }
+    .image{
+        width: 50%;
+        height: 50%;
+        float: left;
+        margin-left: 25%;
+        margin-top: -10%;
+        
+    }
+    .footdiv{
+        height: 3em;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        background-color: white;
+        border-top: 1px solid lightgrey;
+        padding-top: 1%;
+       /* border: 1px solid white; */
+        /* background-color: #FFAC66;
+        border: 1px solid #FFAC66; */
+    }
+    /*********************/
+    /*左边箭头符号*/
+    #leftArrow{
+        position: fixed;
+        margin-left: -18%;
+        margin-top: -2%;
+    }
+    #leftArrow:after, #leftArrow:before {
+        border: 10px solid transparent;
+        border-right: 10px solid #fff;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 0;
+        left: -20px;
+        content: ' '
+    }
+    #leftArrow:before {
+        border-right-color: black;
+        left: -21px;
+    }
+    .stylees-right{
+    	margin-top: 5%;
+    	margin-left: -80%;
+    	margin-bottom: -1.5em;
+    }
+    .stylees-forward{
+        margin-top: 4%;
+    	margin-left: 70%;
+    }
+    .stylees-wanzi{
+    	margin-top: -4%;
+    	font-size: 1.2em;
+    	color: white;
+    }
+    /*右边箭头符号*/
+    #rightArrow{
+        position: fixed;
+        margin-left: 18%;
+        margin-top: -2%;
+    }
+    #rightArrow:after, #rightArrow:before {
+        border: 10px solid transparent;
+        border-left: 10px solid #fff;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 0;
+        right: -20px;
+        content: ' '
+    }
+    #rightArrow:before {
+        border-left-color: black;
+        right: -21px;
+    }
+    /*水平分割线样式*/
+    #level{
+    	margin-top: 1%;
+        width: auto;
+        border: 1px solid lightgrey;
+        position:relative;
+        display:block;
+        -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+        -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+    }
+    .todown{
+    	width: 100%;
+    	top: 0;
+    	background-color: white;
+    	position:fixed;
+    }
+    .down{
+    	height:2.65em;
+    	width:100%;
+    	top:0;
+        position:fixed;
+        /* background:#FFAC66; */
+        text-align: center;
+    }
+    #indexboder{
+        border: 1px solid #FFAC66;
+        margin-top: -2%;
+        margin-left: 8%;
+        width: 34%;
+    }
+    .fonttoleft{
+        margin-top: -8%;
+        font-family: Arial, 'Liberation Sans', FreeSans, 'Hiragino Sans GB', '微软雅黑';
+    }
+    .fonttoright{
+        margin-top: -8%;
+        color: #999999;
+    }
+	.headstyle{
+		color: coral;
+		margin-top: 1%;
+		margin-left: 0.1em;
+		font-size: 1.2em;
+		text-align: center;
+	}
+
+    /************************/
+    /*用户头像的样式*/
+	#userpicture1{
+		width: 100%;
+		height: 5.8em;
+		padding-left: 10%;
+		margin-top: 4.5em;
+		margin-bottom: 0.1em;
+	}
+	/*用户信息展示*/
+	#userpicture2{
+		width: 100%;
+		height: 50%;
+		margin:-30% 1% 5% 30%;
+	}
+	/*图片*/
+	.tupian{
+		width: 20%;
+		height: 50%;
+		margin-top: 0.5em;
+	}
+	.stylees-nicheng{
+		margin-left: 2%;
+		margin-top: 4em;
+	}
+	/*头像下面的底线*/
+	#headhr{
+		width: 20%;
+		border: 1px solid sandybrown;
+		margin: 10% 80% 10% 0;
+	}
+	/*微信昵称*/
+	.nickname{
+		color: darkgray;
+		font-size: 0.5em;
+		margin-top: -6%;
+		margin-left: 30%;
+	}
+	/*图片菜单*/
+	.imgs{
+		width: 100%;
+		height: 2em;
+		padding-left: 10%;
+	}
+	/*图片*/
+	.imgses{
+		width: 8%;
+		height: 5%;
+		margin-left: 2%;
+	}
+	/*图片菜单描述*/
+	.textes{
+		margin-left: 30%;
+		opacity: 0.6;
+		font-family:"Microsoft Yahei";
+	}
+	/*菜单描述后面的箭头符号*/
+	.descriptiones{
+		margin-left: 75%;
+		margin-top: -5%;
+		opacity: 0.2;
+	}
+	/*显示余额和订单数量的样式*/
+	.balance{
+		margin-top: -6%;
+		margin-left: 60%;
+		opacity: 0.6;
+	}
+	/*菜单分割线样式*/
+	.clarity{
+		margin-top: 1%;
+		margin-bottom: 3%;
+		border-right:0; 
+		border-bottom:0; 
+		border-left:0;
+		border-top: 1px solid rgba(200,200,200,0.5);
+	}
+	
