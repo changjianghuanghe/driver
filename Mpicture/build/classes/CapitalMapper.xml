@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="time" property="time"/>
 		<result column="quota" property="quota"/>
 		<result column="sketch" property="sketch"/>
-		<association property="users_id" column="uid" javaType="com.mpicture.entity.Users">
+		<association property="users_id" column="users_id" javaType="com.mpicture.entity.Users">
 			<id column="uid" property="uid"/>
 		</association>
 	</resultMap>
