@@ -26,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.dwr.service.SendMsg;
 import com.mpicture.entity.Capital;
 import com.mpicture.entity.Indent;
 import com.mpicture.entity.PageClass;
@@ -220,8 +219,6 @@ public class UserController {
 		user.setBalance(user.getBalance() - product.getPrice());
 		// 用户余额减少
 		userService.updateUser(user);
-		SendMsg sendMsg=new SendMsg();
-		sendMsg.sendMsg(Constant.ToIndentAction);
 		ModelAndView model = new ModelAndView("redirect:/index/toheaduploadjsp?tid="+primary);
 		return model;
 	}
@@ -278,6 +275,8 @@ public class UserController {
 	/*@RequestMapping("/getusers")
 	public ModelAndView getusers(HttpSession session) {
 		ModelAndView model = new ModelAndView("index/personalset");
+		model.addObject("users", (Users)session.getAttribute("user"));
+		//model.addObject("users", new Users());//现在没有在session中，因此这里是创建的一个对象
 		log.info((Users)session.getAttribute("user"));
 		model.addObject("users", (Users)session.getAttribute("user"));
 		return model;
@@ -299,5 +298,4 @@ public class UserController {
 		ModelAndView model = new ModelAndView("index/type");
 		return model;
 	}
-	
 }

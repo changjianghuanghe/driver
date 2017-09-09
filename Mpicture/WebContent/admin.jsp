@@ -3,7 +3,7 @@
 <html>
 <head>
 <!-- 自动跳转到后台登录页 -->
-<meta http-equiv="refresh" content="0;url=${pageContext.request.contextPath}/admin/turnto">
+<meta http-equiv="refresh" content="0;url=admin/turnto">
 </head>
 <body>
 </body>

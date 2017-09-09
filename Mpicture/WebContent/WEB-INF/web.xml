@@ -36,38 +36,7 @@
     <servlet-name>springMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  
-  <!-- 使用DWR进行页面消息推送  -->  
-    <servlet>    
-        <servlet-name>dwr-invoker</servlet-name>  
-        <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>  
-        <init-param>  
-            <param-name>debug</param-name>  
-            <param-value>true</param-value>  
-        </init-param>  
-        <init-param> 
-            <param-name>activeReverseAjaxEnabled</param-name> 
-            <param-value>true</param-value> 
-        </init-param> 
-        <init-param> 
-            <param-name> 
-               initApplicationScopeCreatorsAtStartup 
-            </param-name> 
-            <param-value>true</param-value> 
-        </init-param>
-        <init-param> 
-            <param-name>maxWaitAfterWrite</param-name> 
-            <param-value>100</param-value> 
-        </init-param> 
-        <load-on-startup>4</load-on-startup> 
-    </servlet>  
-      
-    <servlet-mapping>  
-        <servlet-name>dwr-invoker</servlet-name>  
-        <url-pattern>/dwr/*</url-pattern>  
-    </servlet-mapping>  
-  
-<!--  <servlet>
+  <servlet>
     <servlet-name>initAccessTokenServlet</servlet-name>
     <servlet-class>
             com.access_token.util.AccessTokenServlet
@@ -81,5 +50,5 @@
       <param-value>9375ff7b788f6370e1ed0f6165572a65</param-value>
     </init-param>
     <load-on-startup>0</load-on-startup>
-  </servlet>  -->
+  </servlet> 
 </web-app>

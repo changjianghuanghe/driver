@@ -1,10 +1,5 @@
 package com.mpicture.controller;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,18 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dwr.service.SendMsg;
 import com.mpicture.entity.Admin;
 import com.mpicture.entity.PageClass;
-import com.mpicture.entity.Product;
+import com.mpicture.entity.Users;
 import com.mpicture.service.AdminService;
 import com.mpicture.service.IndentService;
 import com.mpicture.service.ProductService;
+import com.mpicture.service.UserService;
 import com.mpicture.util.Constant;
-import com.mpicture.util.IndentStatusEnum;
 /**
  * controller  - admin管理员
  * 
@@ -48,7 +41,8 @@ public class AdminController {
 	private ProductService productService;
 	@Autowired
 	private IndentService indentService;
-	
+	@Autowired
+	private UserService userService;
 	/**
 	 * 登录前获取表单model
 	 * @return
@@ -175,9 +169,6 @@ public class AdminController {
 		if(status!=null){
 			model.addObject("status", status);
 		}
-		//测试
-		SendMsg sendMsg=new SendMsg();
-		sendMsg.sendMsg(Constant.ToIndentAction);
 		model.setViewName("admin/pages/indent-list");
 		return model;
 	}
@@ -208,6 +199,45 @@ public class AdminController {
 	public ModelAndView updateStatus(Integer tid,Integer status){
 		ModelAndView model=new ModelAndView("redirect:/admin/indentList?nowpage=1");
 		Integer result=indentService.updateIndentStatus(tid,status);
+		return model;
+	}
+	
+	/**
+	 * 客户列表
+	 * @return
+	 */
+	@RequestMapping("/userList")
+	public ModelAndView userList(Integer nowpage,HttpServletRequest request){
+		ModelAndView model=new ModelAndView();
+		pageClass.setNowpage(nowpage);
+		model.addObject("userList", userService.userList(pageClass));
+		model.addObject("pageClass", pageClass);
+		model.setViewName("admin/pages/user-list");
+		return model;
+	}
+	/**
+	 * 删除客户
+	 * @return
+	 */
+	@RequestMapping("/delUser")
+	public ModelAndView delUser(Integer uid){
+		ModelAndView model=new ModelAndView();
+		Users user = new Users();
+		user.setUid(uid);
+		userService.deruser(user);
+		model.setViewName("redirect:/admin/userList");
+		return model;
+	}
+	/**
+	 * 查询客户
+	 * @param productname
+	 * @return
+	 */
+	@RequestMapping("/userSearch")
+	public ModelAndView userSearch(String username){
+		ModelAndView model=new ModelAndView();
+		model.addObject("userList", userService.userSearch(username));//添加属性
+		model.setViewName("/admin/pages/user-list");//定位到页面上，在页面上取值
 		return model;
 	}
 	

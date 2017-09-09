@@ -1,12 +1,21 @@
 package com.mpicture.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mpicture.dao.UserMapper;
+import com.mpicture.entity.Admin;
+import com.mpicture.entity.PageClass;
+import com.mpicture.entity.Product;
 import com.mpicture.entity.Users;
 import com.mpicture.service.UserService;
+
+import tk.mybatis.mapper.entity.Example;
 
 /**
  * 用户serverimple类
@@ -56,6 +65,31 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Integer updateUser(Users user) {
 		return userMapper.updateByPrimaryKey(user);
+	}
+	/**
+	 * 客户列表
+	 */
+	@Override
+	public List<Users> userList(PageClass pageClass) {
+		PageHelper.startPage(pageClass.getNowpage(), pageClass.getPagecount());
+		pageClass.setCount((int)new PageInfo<Users>().getTotal());
+		return userMapper.selectAll();
+	}
+	/**
+	 * 删除客户
+	 */
+	@Override
+	public void deruser(Users user) {
+		userMapper.delete(user);
+	}
+	/**
+	 * 根据客户姓名查询客户
+	 */
+	@Override
+	public List<Users> userSearch(String username) {
+		Example ex=new Example(Users.class);
+		ex.createCriteria().andEqualTo("username", username);
+		return userMapper.selectByExample(ex);
 	}
 
 }

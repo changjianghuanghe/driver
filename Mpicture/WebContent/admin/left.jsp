@@ -123,6 +123,17 @@ function show_menu_box(num){
 						</ul>
 					</div>
 					
+					<div class="meun_top">
+						<div id="img7" class="meun_img"></div>
+						<a onclick="show_menu_box(7)" href="javascript:;">客户管理</a>
+					</div>
+					<div class="meun_box none_box" id="box7">
+						<ul>
+							<li><a href="${pageContext.request.contextPath}/admin/userList?nowpage=1"  target="rightFrame">&middot;客户列表</a></li>
+							<%-- <li><a href="${pageContext.request.contextPath}/admin/addAdmin"  target="rightFrame">&middot;添加用户</a></li> --%>
+						</ul>
+					</div>
+					
 				</div>
 			</td>
 		  </tr>
