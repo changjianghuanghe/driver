@@ -36,7 +36,7 @@
     <servlet-name>springMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  <servlet>
+  <!-- <servlet>
     <servlet-name>initAccessTokenServlet</servlet-name>
     <servlet-class>
             com.access_token.util.AccessTokenServlet
@@ -50,5 +50,5 @@
       <param-value>9375ff7b788f6370e1ed0f6165572a65</param-value>
     </init-param>
     <load-on-startup>0</load-on-startup>
-  </servlet> 
+  </servlet>  -->
 </web-app>
