@@ -16,6 +16,7 @@ public class Constant {
 	public static final String ErrorLogin="用户名或密码错误！";
 	public static final String OperationSuccess="操作成功！";
 	public static final String OperationFail="操作失败！";
+	public static final String ToIndentAction="有新的订单，点击查看";
 	
 	public static final String Recharge="帐户充值";
 	public static final String Withdrawals="资金提现";

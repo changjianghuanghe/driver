@@ -9,16 +9,16 @@
 
 	<form action="${pageContext.request.contextPath}/admin/productAdd" method="post" enctype="multipart/form-data">
 
-		小封面：<input type="file" name="cover" size="12" required="required"/><br>
+		小封面：<input type="file" name="cover"  required="required"/><br>
 		名称：<input type="text" name="name" placeholder="商品名称" required="required"/><br>
 		价格：<input type="text" name="price" placeholder="价格支持小数" required="required"/><br>
 		类型：<select name="type">
 				<option value="1">半身头像</option>
 				<option value="2">情侣合照</option>
 			</select><br>
-		大封面：<input type="file" name="bighead" size="12" required="required"/>
+		大封面：<input type="file" name="bighead" size="12" required="required"/><br><br>
 		<input type="submit" value="添加"/>
-		
+		<p style="color: red">注：小封面上传尺寸为190*190，大封面为540*370<br>尺寸不符将影响显示效果</p>
 	</form>
 </body>
 </html>

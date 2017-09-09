@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+
+</script>
 <style type="text/css">
 <!--
 body {
@@ -34,7 +37,7 @@ a:hover {font-size:12px; color:#00CCFF;text-decoration:none;}
       <tr>
              <td width="282" height="52" background="images/main_05.gif">
         	<span style="font-size:24px;font-weight:bolder;margin-left:60px;">
-        		商城后台管理</span>
+        		萌小你后台管理</span>
         </td>
         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
@@ -52,6 +55,7 @@ a:hover {font-size:12px; color:#00CCFF;text-decoration:none;}
         <td width="247" background="images/main_08.gif">&nbsp;</td>
         <td width="283" background="images/main_09.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
+          	<td><p id="message"></p></td>
             <td>
             	<img src="images/uesr.gif" width="14" height="14">
             	<span class="STYLE2"> 当前登录用户:${sessionScope.admin.username }</span>

@@ -169,6 +169,8 @@ public class AdminController {
 		if(status!=null){
 			model.addObject("status", status);
 		}
+		/*SendMsg send=new SendMsg();
+		send.sendMsg(Constant.ToIndentAction, "receiveMsg");*/
 		model.setViewName("admin/pages/indent-list");
 		return model;
 	}
