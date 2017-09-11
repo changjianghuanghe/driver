@@ -41,17 +41,6 @@ body {
 </style>
 </head>
 <script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
-<link rel="stylesheet"
-	href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> 
-<script
-	src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-
-<!--Includes-->
-<link href="../css/mobiscroll.custom-2.5.0.min.css" rel="stylesheet"
-	type="text/css" />
-<script src="../js/mobiscroll.custom-2.5.0.min.js"
-	type="text/javascript"></script>
 <!-- 自适应判断 -->
 <script type="text/javascript" src="../js/Adaptive.js"></script>
 <script type="text/javascript">
@@ -82,17 +71,17 @@ body {
 		<div style="text-align: center; margin: 20% 0">
 			<form action="${pageContext.request.contextPath}/index/usersUpdate"
 				method="post">
-				<div data-role="fieldcontain">
-					电话:<input type="text" name="phonenumber" /> 
-					邮箱:<input type="text" name="email" />
-					<label for="txtBirthday">出生日期：</label>
-					<input type="text" data-role="datebox" id="txtBirthday" name="birth" />
-					性别:<select name="sex">
-						<option value="1">男</option>
-						<option value="2">女</option>
-					</select> 
-					<br> <input type="submit" value="添加" />
-				</div>
+				
+				电话:<input type="text" name="phonenumber" /> 
+				邮箱:<input type="text" name="email" />
+				<label for="txtBirthday">出生日期：</label>
+				生日:<input type="text" id="txtBirthday" name="birth" />
+				性别:<select name="sex">
+					<option value="1">男</option>
+					<option value="2">女</option>
+				</select> 
+				<br> <input type="submit" value="添加" />
+				
 			</form>
 		</div>
 
