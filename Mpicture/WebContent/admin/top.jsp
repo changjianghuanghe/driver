@@ -4,8 +4,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
 <script type="text/javascript">
-
+$(function(){
+	window.setInterval(pollingAjax, 5000); 
+	function pollingAjax(){
+		$.ajax({
+			url:"../admin/pollingAjax",
+			type: 'POST',
+	       	dataType: 'text',	//返回数据格式
+	       	async:true,
+	       	contentType: "application/json; charset=utf-8",
+	       	success:function(data){
+	       		var json=JSON.parse(data);
+	       		if(json.status==true){
+	       			$("#message").html("有客户未接单<br>请查看订单列表");
+	       		}else{
+	       			$("#message").html("");
+	       		}
+	       	},	
+	       	error:function(){
+	       		console.log("轮询请求失败");
+	       	}
+		});
+	}
+});
 </script>
 <style type="text/css">
 <!--
@@ -55,7 +78,7 @@ a:hover {font-size:12px; color:#00CCFF;text-decoration:none;}
         <td width="247" background="images/main_08.gif">&nbsp;</td>
         <td width="283" background="images/main_09.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-          	<td><p id="message"></p></td>
+          	<td><p style="font-size: 0.5em;color: red;" id="message"></p></td>
             <td>
             	<img src="images/uesr.gif" width="14" height="14">
             	<span class="STYLE2"> 当前登录用户:${sessionScope.admin.username }</span>

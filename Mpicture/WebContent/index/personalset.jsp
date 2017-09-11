@@ -51,7 +51,7 @@ body {
 <body>
 	<div style="width: 100%; height: 100%;position: fixed;">
 		<!-- 导航栏  -->
-		<div class="todown">
+		<div style="position:relative;right:14%" class="todown">
 			<div
 				style="height: 3.5em; width: 100%; position: fixed; top: 0; background: #FFAC66;">
 				<!-- 页眉内容 -->
@@ -71,17 +71,16 @@ body {
 		<div style="text-align: center; margin: 20% 0">
 			<form action="${pageContext.request.contextPath}/index/usersUpdate"
 				method="post">
-				
-				电话:<input type="text" name="phonenumber" /> 
-				邮箱:<input type="text" name="email" />
-				<label for="txtBirthday">出生日期：</label>
-				生日:<input type="text" id="txtBirthday" name="birth" />
-				性别:<select name="sex">
-					<option value="1">男</option>
-					<option value="2">女</option>
-				</select> 
-				<br> <input type="submit" value="添加" />
-				
+				<div style="position: relative;right: 20%">
+					电话:<input type="text" name="phonenumber" /><br><br>
+					邮箱:<input type="text" name="email" /><br><br>
+					出生日期:<input type="text" style="margin-right:9%" name="birth" /><br><br>
+					性别:<select name="sex" style="width:56%"> 
+						<option value="1">男</option>
+						<option value="2">女</option>
+					</select> 
+					<br><br><input type="submit" value="添加" />
+				</div>
 			</form>
 		</div>
 

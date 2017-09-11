@@ -150,7 +150,7 @@ html, body {
 	<div id="level"></div> -->
 	
 	<!-- 预览图片 -->
-	<div class="bagimg"><img src="img/head.jpg"></img></div>
+	<div><img class="bagimg" src="img/head.jpg"></img></div>
 	
 	<div class="transparent">
 		<p style="color: white; text-align: center">点击图片上传</p>
