@@ -1,5 +1,11 @@
 package com.mpicture.controller;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,9 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
 import com.mpicture.entity.Admin;
+import com.mpicture.entity.Indent;
 import com.mpicture.entity.PageClass;
 import com.mpicture.entity.Users;
 import com.mpicture.service.AdminService;
@@ -18,6 +28,7 @@ import com.mpicture.service.IndentService;
 import com.mpicture.service.ProductService;
 import com.mpicture.service.UserService;
 import com.mpicture.util.Constant;
+import com.mpicture.util.IndentStatusEnum;
 /**
  * controller  - admin管理员
  * 
@@ -90,6 +101,22 @@ public class AdminController {
 		model.setViewName("admin/login");
 		return model;
 	}
+	/**
+	 * ajax轮询查看是否有未接单
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/pollingAjax")
+	public String pollingAjax(){
+		PageClass pageClass=new PageClass();
+		pageClass.setNowpage(1);
+		List<Indent> indents=indentService.listIndentByStatus(pageClass,IndentStatusEnum.NotOrders.getStatus());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("status", indents.size()>0?true:false);
+		return JSON.toJSONString(map);
+	}
+	
+	
 	/**
 	 * 用户列表
 	 * @return
@@ -240,6 +267,61 @@ public class AdminController {
 		ModelAndView model=new ModelAndView();
 		model.addObject("userList", userService.userSearch(username));//添加属性
 		model.setViewName("/admin/pages/user-list");//定位到页面上，在页面上取值
+		return model;
+	}
+	/**
+	 * 查询history图片
+	 * @return
+	 */
+	@RequestMapping("/listpicture")
+	public ModelAndView addpicture(HttpServletRequest request){
+		ModelAndView model=new ModelAndView("/admin/pages/listpicture");
+		String path = request.getServletContext().getRealPath("history"); 
+		File file=new File(path);
+		File files[] = file.listFiles();
+		List<String> pictures=new ArrayList<String>();
+		for (int i = 0; i < files.length; i++) {
+			pictures.add("../history/"+files[i].getName());
+		}
+		model.addObject("pictures", pictures);
+		return model;
+	}
+	/**
+	 * 删除history下的图片
+	 * @param picturename
+	 * @return
+	 */
+	@RequestMapping("/delpicture")
+	public ModelAndView delpicture(String picturename,HttpServletRequest request){
+		ModelAndView model=new ModelAndView("redirect:/admin/listpicture");
+		String path = request.getServletContext().getRealPath("history"); 
+		String fileName=picturename.substring(picturename.lastIndexOf("/")+1);
+		File file=new File(path,fileName);
+		if(file.exists()){
+			if (file.isFile())
+              file.delete();
+		}
+		return model;
+	}
+	/**
+	 * 添加history下的图片
+	 * @return
+	 */
+	@RequestMapping("/addpicture")
+	public ModelAndView addpicture(MultipartFile picture,HttpServletRequest request){
+		ModelAndView model=new ModelAndView("redirect:/admin/listpicture");
+		String path = request.getServletContext().getRealPath("history");
+		String fileName = picture.getOriginalFilename();  
+        File file = new File(path, fileName); 
+        if(!file.exists()){
+        	file.mkdirs();
+        }
+        
+        try {  
+        	picture.transferTo(file);  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }
 		return model;
 	}
 	

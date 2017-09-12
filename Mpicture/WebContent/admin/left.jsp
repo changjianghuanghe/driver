@@ -114,12 +114,13 @@ function show_menu_box(num){
 					
 					<div class="meun_top">
 						<div id="img6" class="meun_img"></div>
-						<a onclick="show_menu_box(6)" href="javascript:;">用户管理</a>
+						<a onclick="show_menu_box(6)" href="javascript:;">系统管理</a>
 					</div>
 					<div class="meun_box none_box" id="box6">
 						<ul>
 							<li><a href="${pageContext.request.contextPath}/admin/adminList?nowpage=1"  target="rightFrame">&middot;用户列表</a></li>
 							<li><a href="${pageContext.request.contextPath}/admin/addAdmin"  target="rightFrame">&middot;添加用户</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/listpicture"  target="rightFrame">&middot;最近完成</a></li>
 						</ul>
 					</div>
 					

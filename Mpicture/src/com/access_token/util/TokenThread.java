@@ -51,9 +51,9 @@ public class TokenThread implements Runnable{
     private AccessToken getAccessToken(){
         NetWorkHelper netHelper = new NetWorkHelper();
         String Url = String.format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",this.appId,this.appSecret);
+        //此处发生https请求
         String result = netHelper.getHttpsResponse(Url,"");
         System.out.println(result);
-        //response.getWriter().println(result);
         JSONObject json = JSON.parseObject(result);
         AccessToken token = new AccessToken();
         token.setAccessToken(json.getString("access_token"));

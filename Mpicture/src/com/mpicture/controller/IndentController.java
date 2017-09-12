@@ -1,8 +1,12 @@
 package com.mpicture.controller;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,12 +68,19 @@ public class IndentController {
 		indentService.updateIndentStatus(indent);
 		return "success";
 	}
+	
 	@ResponseBody
 	@RequestMapping("/newIndentList")
-	public String newIndentList(HttpSession session){
+	public String newIndentList(HttpSession session,HttpServletRequest request){
+		String path = request.getServletContext().getRealPath("history"); 
+		File file=new File(path);
+		File files[] = file.listFiles();
+		List<String> pictures=new ArrayList<String>();
+		for (int i = 0; i < files.length; i++) {
+			pictures.add("../history/"+files[i].getName());
+		}
 		Map<String,Object> map=new HashMap<String,Object>();
-		Users user=(Users)session.getAttribute("user");
-		map.put("indents", indentService.newIndentList(user.getUid(), 0, 5));
+		map.put("indents",pictures);
 		return JSON.toJSONString(map);
 	}
 }
